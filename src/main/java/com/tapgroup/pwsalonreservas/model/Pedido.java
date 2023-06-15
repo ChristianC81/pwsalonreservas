@@ -29,7 +29,7 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_pedido")
     private int id_pedido;
-
+    
     
     @Column(name = "cantidad")
     private String cantidad;

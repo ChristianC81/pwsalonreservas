@@ -11,6 +11,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.Email;
@@ -32,7 +33,6 @@ public class Salon {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_salon")
     private int salId;
-
 
     @Size(min = 3, max = 10, message = "El nombre del salon debe tener entre 3 y 10 caracteres")
     @NotBlank(message = "La salon no puede estar en blanco")
@@ -59,20 +59,23 @@ public class Salon {
 
 //    @Column(name = "categoria")
 //    private String pubCategoria;
-    @OneToOne
-    @JoinColumn(name = "id_usuariopublicador", referencedColumnName = "id_persona")
+    //Muchos salones un usuario (Publicador)
+    @ManyToOne
+    @JoinColumn(name = "id_usuariopublicador", referencedColumnName = "id_usuario")
     private Usuario usuariopublicador;
 
-    //Un salon tiene uno o muchos complementos
-    @JsonIgnore
-    @OneToMany(mappedBy = "salon")
-    private List<Complemento> listaComplementos;
-
-    //Un salon un pedido
-    
     //Un salon muchas calificaciones
     @JsonIgnore
     @OneToMany(mappedBy = "salon")
     private List<Calificacion> listaCalificaciones;
 
+    //Un salon un pedido
+    @OneToOne
+    @JoinColumn(name = "id_pedido", referencedColumnName = "id_pedido")
+    private Pedido pedido;
+
+    //Un salon tiene uno o muchos complementos
+    @JsonIgnore
+    @OneToMany(mappedBy = "salon")
+    private List<Complemento> listaComplementos;
 }

@@ -56,6 +56,7 @@ public class Persona {
     @Column(name = "fecha_nac")
     private Date persFechaNac;
     
+    //Una persona muchos usuarios
     @JsonIgnore
     @OneToMany(mappedBy = "persona")
     private List<Usuario> listaUsuarios;

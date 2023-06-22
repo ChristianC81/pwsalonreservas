@@ -39,21 +39,29 @@ public class Usuario {
     @Column(name = "contrasenia")
     private String usuContrasenia;
 
+    //Muchos usuarios una persona
     @ManyToOne
     @JoinColumn(name = "id_persona", referencedColumnName = "id_persona")
     private Persona persona;
 
+    //Muchos usuarios un rol
     @ManyToOne
     @JoinColumn(name = "id_rol", referencedColumnName = "id_rol")
     private Rol rol;
-
-    //Un usuario a muchos pedidos
-    @JsonIgnore
-    @OneToMany(mappedBy = "usuario_pedido")
-    private List<Pedido> listaPedidos;
 
     //Un usuario muchas calificaciones
     @JsonIgnore
     @OneToMany(mappedBy = "usuario")
     private List<Calificacion> listaCalificaciones;
+
+    //Un usuario muchos salones (Publicador)
+    @JsonIgnore
+    @OneToMany(mappedBy = "usuariopublicador")
+    private List<Salon> listaSalones;
+    
+    //Un usuario muchos pedidos
+    @JsonIgnore
+    @OneToMany(mappedBy = "usuario_pedido")
+    private List<Pedido> listaPedidos;
+
 }

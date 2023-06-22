@@ -30,7 +30,7 @@ public class Salon {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_publicacion")
+    @Column(name = "id_salon")
     private int pubId;
 
     @Size(min = 3, max = 10, message = "El nombre del salon debe tener entre 3 y 10 caracteres")

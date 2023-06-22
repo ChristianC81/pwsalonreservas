@@ -34,20 +34,20 @@ public class Persona {
      @Column(name = "dni_pasaporte")
     private String persDniPasaporte;
     
-    @Size(min = 3, max = 10, message = "La persona debe tener entre 3 y 10 caracteres")
-    @NotBlank(message = "La persona no puede estar en blanco")
+    //@Size(min = 3, max = 10, message = "La persona debe tener entre 3 y 10 caracteres")
+    //@NotBlank(message = "La persona no puede estar en blanco")
     @Column(name = "nombre")
     private String persNombre;
 
-    @NotBlank(message = "La clave no puede estar en blanco")
+    //@NotBlank(message = "La clave no puede estar en blanco")
     @Column(name = "apellido")
     private String persApellido;
 
-    @Email(message = "Debe ingresar una dirección de correo válida")
-      @Column(name = "email")
+    //@Email(message = "Debe ingresar una dirección de correo válida")
+    @Column(name = "email")
     private String persEmail;
       
-      @Column(name = "telefono")
+    @Column(name = "telefono")
     private String persTelefono;
       
     @Column(name = "celular")

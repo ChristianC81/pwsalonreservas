@@ -4,16 +4,20 @@
  */
 package com.tapgroup.pwsalonreservas.repository;
 
-
 import com.tapgroup.pwsalonreservas.model.Persona;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
 
 /**
  *
  * @author chris
  */
-public interface PersonaRepository extends JpaRepository<Persona, Integer>{
-        @Query(value = "Select * from persona u where u.dni_pasaporte = :dni_pasaporte", nativeQuery = true)
-    public Persona buscarPersona(String dni_pasaporte);
+public interface PersonaRepository extends JpaRepository<Persona, Integer> {
+
+    
+    
+    @Query("SELECT COUNT(p)>0 FROM Persona p WHERE p.persDniPasaporte = :dni")
+    boolean validarPersona(@Param("dni") String persDniPasaporte);
 }

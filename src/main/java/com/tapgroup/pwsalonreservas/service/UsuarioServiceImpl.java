@@ -21,6 +21,12 @@ public class UsuarioServiceImpl extends GenericServiceImpl<Usuario, Integer> imp
     @Autowired
     UsuarioRepository usuarioRepository;
 
+    public boolean validarUsuario(String usuNombre) {
+        return usuarioRepository.validarUsuario(usuNombre);
+    }
+
+  
+    
     @Override
     public CrudRepository<Usuario, Integer> getDao() {
         return usuarioRepository;

@@ -26,6 +26,13 @@ public class PersonaServiceImpl extends GenericServiceImpl<Persona, Integer> imp
         return rolRepository;
     }
 
+    public boolean validarPersona(String persDniPasaporte) {
+        return rolRepository.validarPersona(persDniPasaporte);
+    }
+
+
+   
+
 
 }
 

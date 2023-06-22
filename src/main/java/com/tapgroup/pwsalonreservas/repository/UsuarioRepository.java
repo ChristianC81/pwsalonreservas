@@ -4,17 +4,24 @@
  */
 package com.tapgroup.pwsalonreservas.repository;
 
-
-
 import com.tapgroup.pwsalonreservas.model.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 /**
  *
  * @author chris
  */
-public interface UsuarioRepository extends JpaRepository<Usuario, Integer>{
-        @Query(value = "Select * from usuario u where u.nombre_usuario = :nombre_usuario", nativeQuery = true)
-    public Usuario buscarUsuario(String nombre_usuario);
+public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
+
+
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!!!!!!!
+    //al mandar un parametro siempre va los :varible 
+    //los : y la variable si no no vale
+    
+    //buscar el si existe un usuario 
+    @Query ("SELECT COUNT(u)>0 FROM Usuario u WHERE u.usuNombre = :usuario")
+    boolean validarUsuario(@Param("usuario")String usuNombre);
 }

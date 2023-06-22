@@ -49,9 +49,8 @@ public class RolController {
         Rol rol = rolService.findById(id);
         if (rol != null) {
             try {
-                rol.setNombre(r.getNombre());
-                rol.setDescripcion(r.getDescripcion());
-                
+                rol.setRolNombre(r.getRolNombre());
+                rol.setRolDescripcion(r.getRolDescripcion());
 
                 return new ResponseEntity<>(rolService.save(rol), HttpStatus.CREATED);
             } catch (Exception e) {

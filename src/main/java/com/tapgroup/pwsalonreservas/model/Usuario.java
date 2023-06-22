@@ -27,20 +27,20 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_usuario")
-    private int id_usuario;
+    private int usuId;
+
+    @Column(name = "nombre_usuario")
+    private String usuNombre;
+
+    @NotBlank(message = "La contraseña no puede estar en blanco")
+    @Column(name = "contrasenia")
+    private String usuContrasenia;
 
     @ManyToOne
     @JoinColumn(name = "id_persona", referencedColumnName = "id_persona")
     private Persona persona;
-
-    @Column(name = "nombre_usuario")
-    private String nombre_usuario;
-
-    @NotBlank(message = "La contraseña no puede estar en blanco")
-    @Column(name = "contrasenia")
-    private String contrasenia;
-
-    @OneToOne
+    
+    @ManyToOne
     @JoinColumn(name = "id_rol", referencedColumnName = "id_rol")
     private Rol rol;
 

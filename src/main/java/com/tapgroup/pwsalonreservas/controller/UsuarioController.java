@@ -49,11 +49,10 @@ public class UsuarioController {
         Usuario usu = usuarioService.findById(id);
         if (usu != null) {
             try {
-                usu.setNombre_usuario(u.getNombre_usuario());
-                usu.setContrasenia(u.getContrasenia());
-                usu.setRol(u.getRol());
-                usu.setPersona(u.getPersona());
-             
+                usu.setUsuNombre(u.getUsuNombre());
+                usu.setUsuContrasenia(u.getUsuContrasenia());
+                usu.setRol(u.getRol());   
+           
                 return new ResponseEntity<>(usuarioService.save(usu), HttpStatus.CREATED);
             } catch (Exception e) {
                 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

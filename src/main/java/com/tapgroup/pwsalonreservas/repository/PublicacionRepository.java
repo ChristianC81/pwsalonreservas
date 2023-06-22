@@ -5,7 +5,7 @@
 package com.tapgroup.pwsalonreservas.repository;
 
 
-import com.tapgroup.pwsalonreservas.model.Complemento;
+import com.tapgroup.pwsalonreservas.model.Publicacion;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -13,7 +13,7 @@ import org.springframework.data.jpa.repository.Query;
  *
  * @author chris
  */
-public interface ComplementoRepository extends JpaRepository<Complemento, Integer>{
-        @Query(value = "Select * from complemento u where u.nombre = :nombre", nativeQuery = true)
-    public Complemento buscarComplemento(String nombre);
+public interface PublicacionRepository extends JpaRepository<Publicacion, Integer>{
+        @Query(value = "Select * from salon u where u.nombre = :nombre", nativeQuery = true)
+    public Publicacion buscarSalon(String nombre);
 }

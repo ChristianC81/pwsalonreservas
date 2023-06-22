@@ -5,8 +5,8 @@
  */
 package com.tapgroup.pwsalonreservas.controller;
 
-import com.tapgroup.pwsalonreservas.model.Complemento;
-import com.tapgroup.pwsalonreservas.service.ComplementoServiceImpl;
+import com.tapgroup.pwsalonreservas.model.Servicio;
+import com.tapgroup.pwsalonreservas.service.ServicioServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,30 +27,30 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/complemento")
-public class ComplementoController {
+public class ServicioController {
 
     @Autowired
-    ComplementoServiceImpl complementoService;
+    ServicioServiceImpl complementoService;
 
     @Operation(summary = "Se obtiene la lista de Complementos")
     @GetMapping("/listar")
-    public ResponseEntity<List<Complemento>> listaComplementoes() {
+    public ResponseEntity<List<Servicio>> listaComplementoes() {
         return new ResponseEntity<>(complementoService.findByAll(), HttpStatus.OK);
     }
 
     @Operation(summary = "Debe enviar los campos de Complemento")
     @PostMapping("/crear")
-    public ResponseEntity<Complemento> crearComplemento(@RequestBody Complemento c) {
+    public ResponseEntity<Servicio> crearComplemento(@RequestBody Servicio c) {
         return new ResponseEntity<>(complementoService.save(c), HttpStatus.CREATED);
     }
 
     @PutMapping("/actualizar/{id}")
-    public ResponseEntity<Complemento> actualizarComplemento(@PathVariable Integer id, @RequestBody Complemento c) {
-        Complemento com = complementoService.findById(id);
+    public ResponseEntity<Servicio> actualizarComplemento(@PathVariable Integer id, @RequestBody Servicio c) {
+        Servicio com = complementoService.findById(id);
         if (com != null) {
             try {
 
-                com.setNombre(c.getNombre());
+                com.setSerNombre(c.getSerNombre());
                 com.setDescripcion(c.getDescripcion());
                 com.setEstado(c.getEstado());
                 com.setPrecioUnitario(c.getPrecioUnitario());
@@ -66,7 +66,7 @@ public class ComplementoController {
     }
 
     @DeleteMapping("/eliminar/{id}")
-    public ResponseEntity<Complemento> eliminarComplemento(@PathVariable Integer id) {
+    public ResponseEntity<Servicio> eliminarComplemento(@PathVariable Integer id) {
         complementoService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }

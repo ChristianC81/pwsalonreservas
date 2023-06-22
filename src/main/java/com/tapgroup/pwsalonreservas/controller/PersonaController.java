@@ -50,13 +50,13 @@ public class PersonaController {
         if (per != null) {
             try {
                 
-                per.setDni_pasaporte(p.getDni_pasaporte());
-                per.setNombre(p.getNombre());
-                per.setApellido(p.getApellido());
-                per.setEmail(p.getEmail());
-                per.setTelefono(p.getTelefono());
-                per.setCelular(p.getCelular());
-                per.setFecha_nac(p.getFecha_nac());
+                per.setPersDniPasaporte(p.getPersDniPasaporte());
+                per.setPersNombre(p.getPersNombre());
+                per.setPersApellido(p.getPersApellido());
+                per.setPersEmail(p.getPersEmail());
+                per.setPersTelefono(p.getPersEmail());
+                per.setPerscelular(p.getPerscelular());
+                per.setPersFechaNac(p.getPersFechaNac());
                 
               
                 return new ResponseEntity<>(personaService.save(per), HttpStatus.CREATED);

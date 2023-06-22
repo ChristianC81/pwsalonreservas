@@ -16,31 +16,30 @@ import jakarta.validation.constraints.Size;
 import java.util.List;
 import lombok.Data;
 
-
 /**
  *
  * @author chris
  */
-
 @Data
 @Entity
-public class Complemento {
+public class Servicio {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_servicio")
-    private int id_servicio;
+    private int serId;
 
     @Column(name = "nombre")
-    private String nombre;
-    
+    private String serNombre;
+
     @NotBlank(message = "La detalle no puede estar en blanco")
     @Column(name = "descripcion")
     private String descripcion;
-  
+
     @Column(name = "estado")
     private String estado;
-    
-      @Column(name = "precioUnitario")
+
+    @Column(name = "precioUnitario")
     private double precioUnitario;
-  
+
 }

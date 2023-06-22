@@ -26,49 +26,41 @@ import lombok.Data;
  */
 @Data
 @Entity
-public class Salon {
+public class Publicacion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_salon")
-    private int id_salon;
+    @Column(name = "id_publicacion")
+    private int pubId;
 
-     @OneToOne
-    @JoinColumn(name = "id_usuariopublicador", referencedColumnName = "id_persona")
-    private Usuario usuariopublicador;
-     
     @Size(min = 3, max = 10, message = "El nombre del salon debe tener entre 3 y 10 caracteres")
     @NotBlank(message = "La salon no puede estar en blanco")
     @Column(name = "nombre")
-    private String nombre;
+    private String pubNombre;
+
+    @Column(name = "descripcion")
+    private String pubDescripcion;
+
+    @Column(name = "ubicacion")
+    private String pubUbicacion;
 
     @Column(name = "direccion")
-    private String direccion;
+    private String pubDireccion;
 
-      @Column(name = "capacidad")
-    private int capacidad;
-      
-      @Column(name = "disponibilidad")
-    private boolean disponibilidad;
-      
-    @Column(name = "descripcion")
-    private String descripcion;
+    @Column(name = "precioSalon")
+    private double pubPrecio;
     
-     @Column(name = "categoria")
-    private String categoria;
+    @Column(name = "disponibilidad")
+    private boolean pubDisponibilidad;
 
-     @Column(name = "foto")
-    private String foto;
+    @Column(name = "capacidad")
+    private int pubCapacidad;
 
-     @Column(name = "ubicacion")
-    private String ubicacion;
-     
-     @Column(name = "precioSalon")
-    private double precioSalon;
-     
-    @Column(name = "calificacion")
-    private String calificacion;
-   
-    
+//    @Column(name = "categoria")
+//    private String pubCategoria;
+
+    @OneToOne
+    @JoinColumn(name = "id_usuariopublicador", referencedColumnName = "id_persona")
+    private Usuario usuariopublicador;
 
 }

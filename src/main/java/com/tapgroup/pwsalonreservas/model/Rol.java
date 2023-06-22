@@ -16,27 +16,30 @@ import jakarta.validation.constraints.Size;
 import java.util.List;
 import lombok.Data;
 
-
 /**
  *
  * @author chris
  */
-
 @Data
 @Entity
 public class Rol {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_rol")
-    private int id_rol;
+    private int rolId;
 
-    @Size(min = 3, max =20, message = "El usuario debe tener entre 3 y 10 caracteres")
+    @Size(min = 3, max = 20, message = "El usuario debe tener entre 3 y 10 caracteres")
     @NotBlank(message = "El nombre de rol no puede estar en blanco")
     @Column(name = "nombre")
-    private String nombre;
-    
+    private String rolNombre;
+
     @NotBlank(message = "La detalle no puede estar en blanco")
     @Column(name = "descripcion")
-    private String descripcion;
-   
+    private String rolDescripcion;
+
+    @JsonIgnore
+    @OneToMany(mappedBy="rol")
+    private List<Usuario> listUsu;
+
 }

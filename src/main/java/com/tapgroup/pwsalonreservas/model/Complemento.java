@@ -13,7 +13,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import java.util.List;
@@ -25,35 +24,29 @@ import lombok.Data;
  */
 @Data
 @Entity
-public class Pedido {
+public class Complemento {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_pedido")
-    private int id_pedido;
+    @Column(name = "id_servicio")
+    private int serId;
 
-    @Column(name = "cantidad")
-    private String cantidad;
+    @Column(name = "nombre")
+    private String serNombre;
 
-    @Column(name = "preciocomplementos")
-    private double preciocomplementos;
+    @NotBlank(message = "La detalle no puede estar en blanco")
+    @Column(name = "descripcion")
+    private String descripcion;
 
-    @Column(name = "preciototal")
-    private double preciototal;
+    @Column(name = "estado")
+    private String estado;
 
-    @Column(name = "observacion")
-    private String observacion;
+    @Column(name = "precioUnitario")
+    private double precioUnitario;
 
-    @Column(name = "comprobantedepago")
-    private String comprobantedepago;
-
-    // Muchos pedidos a un Usuario
+    // muchos complementos tienen un salon
     @ManyToOne
-    @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
-    private Usuario usuario_pedido;
+    @JoinColumn(name = "id_salon", referencedColumnName = "id_salon")
+    private Salon salon;
 
-    //Un pedido un salon
-    @OneToOne
-    @JoinColumn(name = "id_usuariopublicador", referencedColumnName = "id_persona")
-    private Usuario usuariopublicador;
 }

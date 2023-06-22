@@ -5,8 +5,8 @@
  */
 package com.tapgroup.pwsalonreservas.controller;
 
-import com.tapgroup.pwsalonreservas.model.Servicio;
-import com.tapgroup.pwsalonreservas.service.ServicioServiceImpl;
+import com.tapgroup.pwsalonreservas.model.Salon;
+import com.tapgroup.pwsalonreservas.service.SalonServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,36 +26,40 @@ import org.springframework.web.bind.annotation.RestController;
  * @author jonny
  */
 @RestController
-@RequestMapping("/complemento")
-public class ServicioController {
+@RequestMapping("/salon")
+public class SalonController {
 
     @Autowired
-    ServicioServiceImpl complementoService;
+    SalonServiceImpl salonService;
 
-    @Operation(summary = "Se obtiene la lista de Complementos")
+    @Operation(summary = "Se obtiene la lista de Salones")
     @GetMapping("/listar")
-    public ResponseEntity<List<Servicio>> listaComplementoes() {
-        return new ResponseEntity<>(complementoService.findByAll(), HttpStatus.OK);
+    public ResponseEntity<List<Salon>> listaSalones() {
+        return new ResponseEntity<>(salonService.findByAll(), HttpStatus.OK);
     }
 
-    @Operation(summary = "Debe enviar los campos de Complemento")
+    @Operation(summary = "Debe enviar los campos de Salon")
     @PostMapping("/crear")
-    public ResponseEntity<Servicio> crearComplemento(@RequestBody Servicio c) {
-        return new ResponseEntity<>(complementoService.save(c), HttpStatus.CREATED);
+    public ResponseEntity<Salon> crearSalon(@RequestBody Salon s) {
+        return new ResponseEntity<>(salonService.save(s), HttpStatus.CREATED);
     }
 
     @PutMapping("/actualizar/{id}")
-    public ResponseEntity<Servicio> actualizarComplemento(@PathVariable Integer id, @RequestBody Servicio c) {
-        Servicio com = complementoService.findById(id);
-        if (com != null) {
+    public ResponseEntity<Salon> actualizarSalon(@PathVariable Integer id, @RequestBody Salon s) {
+        Salon sa = salonService.findById(id);
+        if (sa != null) {
             try {
 
-                com.setSerNombre(c.getSerNombre());
-                com.setDescripcion(c.getDescripcion());
-                com.setEstado(c.getEstado());
-                com.setPrecioUnitario(c.getPrecioUnitario());
+                sa.setPubNombre(s.getPubNombre());
+                sa.setPubDescripcion(s.getPubDireccion());
+                sa.setPubCapacidad(s.getPubCapacidad());
+                //sa.setDisponibilidad(s.getd);
+                sa.setPubDireccion(s.getPubDescripcion());
+                sa.setPubUbicacion(s.getPubUbicacion());
+                sa.setPubPrecio(s.getPubPrecio());
+//                sa.setUsuariopublicador(s.getUsuariopublicador());
 
-                return new ResponseEntity<>(complementoService.save(com), HttpStatus.CREATED);
+                return new ResponseEntity<>(salonService.save(sa), HttpStatus.CREATED);
             } catch (Exception e) {
                 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
@@ -66,8 +70,8 @@ public class ServicioController {
     }
 
     @DeleteMapping("/eliminar/{id}")
-    public ResponseEntity<Servicio> eliminarComplemento(@PathVariable Integer id) {
-        complementoService.delete(id);
+    public ResponseEntity<Salon> eliminarSalon(@PathVariable Integer id) {
+        salonService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

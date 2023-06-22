@@ -26,7 +26,7 @@ import lombok.Data;
  */
 @Data
 @Entity
-public class Publicacion {
+public class Salon {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,7 +49,7 @@ public class Publicacion {
 
     @Column(name = "precioSalon")
     private double pubPrecio;
-    
+
     @Column(name = "disponibilidad")
     private boolean pubDisponibilidad;
 
@@ -58,9 +58,20 @@ public class Publicacion {
 
 //    @Column(name = "categoria")
 //    private String pubCategoria;
-
     @OneToOne
     @JoinColumn(name = "id_usuariopublicador", referencedColumnName = "id_persona")
     private Usuario usuariopublicador;
+
+    //Un salon tiene uno o muchos complementos
+    @JsonIgnore
+    @OneToMany(mappedBy = "salon")
+    private List<Complemento> listaComplementos;
+
+    //Un salon un pedido
+    
+    //Un salon muchas calificaciones
+    @JsonIgnore
+    @OneToMany(mappedBy = "salon")
+    private List<Calificacion> listaCalificaciones;
 
 }

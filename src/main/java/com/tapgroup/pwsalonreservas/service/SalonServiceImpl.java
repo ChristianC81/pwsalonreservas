@@ -4,26 +4,26 @@
  */
 package com.tapgroup.pwsalonreservas.service;
 
-import com.tapgroup.pwsalonreservas.model.Servicio;
+import com.tapgroup.pwsalonreservas.model.Salon;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
-import com.tapgroup.pwsalonreservas.repository.ServicioRepository;
+import com.tapgroup.pwsalonreservas.repository.SalonRepository;
 
 /**
  *
  * @author chris
  */
 @Service
-public class ServicioServiceImpl extends GenericServiceImpl<Servicio, Integer> implements GenericService<Servicio, Integer> {
+public class SalonServiceImpl extends GenericServiceImpl<Salon, Integer> implements GenericService<Salon, Integer> {
 
     @Autowired
-    ServicioRepository complementoRepository;
+    SalonRepository salonRepository;
 
     @Override
-    public CrudRepository<Servicio, Integer> getDao() {
-        return complementoRepository;
+    public CrudRepository<Salon, Integer> getDao() {
+        return salonRepository;
     }
 
 

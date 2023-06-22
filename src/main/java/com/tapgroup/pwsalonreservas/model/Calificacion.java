@@ -6,40 +6,38 @@ package com.tapgroup.pwsalonreservas.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 import java.util.List;
-import lombok.Data;
 
 /**
  *
  * @author chris
  */
-@Data
-@Entity
-public class Servicio {
+public class Calificacion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_servicio")
+    @Column(name = "id_calificacion")
     private int serId;
 
-    @Column(name = "nombre")
-    private String serNombre;
+    @Column(name = "valor")
+    private int valor;
 
-    @NotBlank(message = "La detalle no puede estar en blanco")
-    @Column(name = "descripcion")
-    private String descripcion;
+    //Funcion que estime las calificaciones
+    
+    // Muchas calificaciones un usuario
+    @ManyToOne
+    @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
+    private Usuario usuario;
 
-    @Column(name = "estado")
-    private String estado;
-
-    @Column(name = "precioUnitario")
-    private double precioUnitario;
-
+    //Muchas calificaciones una publicacion
+    @ManyToOne
+    @JoinColumn(name = "id_salon", referencedColumnName = "id_salon")
+    private Salon salon;
 }

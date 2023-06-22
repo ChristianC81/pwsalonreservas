@@ -50,10 +50,10 @@ public class ComplementoController {
         if (com != null) {
             try {
 
-                com.setSerNombre(c.getSerNombre());
-                com.setDescripcion(c.getDescripcion());
-                com.setEstado(c.getEstado());
-                com.setPrecioUnitario(c.getPrecioUnitario());
+                com.setComNombre(c.getComNombre());
+                com.setComDescripcion(c.getComDescripcion());
+                com.setComEstado(c.getComEstado());
+                com.setComPrecioUnitario(c.getComPrecioUnitario());
 
                 return new ResponseEntity<>(complementoService.save(com), HttpStatus.CREATED);
             } catch (Exception e) {

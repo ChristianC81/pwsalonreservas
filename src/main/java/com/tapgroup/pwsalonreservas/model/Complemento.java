@@ -12,10 +12,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
-import java.util.List;
 import lombok.Data;
 
 /**
@@ -28,21 +25,21 @@ public class Complemento {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_servicio")
-    private int serId;
+    @Column(name = "id_complemento")
+    private int comId;
 
     @Column(name = "nombre")
-    private String serNombre;
+    private String comNombre;
 
     @NotBlank(message = "La detalle no puede estar en blanco")
     @Column(name = "descripcion")
-    private String descripcion;
+    private String comDescripcion;
 
     @Column(name = "estado")
-    private String estado;
+    private String comEstado;
 
     @Column(name = "precioUnitario")
-    private double precioUnitario;
+    private double comPrecioUnitario;
 
     // muchos complementos tienen un salon
     @ManyToOne

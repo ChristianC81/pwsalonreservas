@@ -52,8 +52,5 @@ public class Pedido {
     @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
     private Usuario usuario_pedido;
 
-    //Un pedido un salon
-    @OneToOne
-    @JoinColumn(name = "id_usuariopublicador", referencedColumnName = "id_persona")
-    private Usuario usuariopublicador;
+
 }

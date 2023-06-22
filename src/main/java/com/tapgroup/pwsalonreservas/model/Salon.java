@@ -31,30 +31,31 @@ public class Salon {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_salon")
-    private int pubId;
+    private int salId;
+
 
     @Size(min = 3, max = 10, message = "El nombre del salon debe tener entre 3 y 10 caracteres")
     @NotBlank(message = "La salon no puede estar en blanco")
     @Column(name = "nombre")
-    private String pubNombre;
+    private String salNombre;
 
     @Column(name = "descripcion")
-    private String pubDescripcion;
+    private String salDescripcion;
 
     @Column(name = "ubicacion")
-    private String pubUbicacion;
+    private String salUbicacion;
 
     @Column(name = "direccion")
-    private String pubDireccion;
+    private String salDireccion;
 
     @Column(name = "precioSalon")
-    private double pubPrecio;
+    private double salPrecio;
 
     @Column(name = "disponibilidad")
-    private boolean pubDisponibilidad;
+    private boolean salDisponibilidad;
 
     @Column(name = "capacidad")
-    private int pubCapacidad;
+    private int salCapacidad;
 
 //    @Column(name = "categoria")
 //    private String pubCategoria;

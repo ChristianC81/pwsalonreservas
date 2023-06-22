@@ -50,13 +50,13 @@ public class SalonController {
         if (sa != null) {
             try {
 
-                sa.setPubNombre(s.getPubNombre());
-                sa.setPubDescripcion(s.getPubDireccion());
-                sa.setPubCapacidad(s.getPubCapacidad());
+                sa.setSalNombre(s.getSalNombre());
+                sa.setSalDescripcion(s.getSalDescripcion());
+                sa.setSalCapacidad(s.getSalCapacidad());
                 //sa.setDisponibilidad(s.getd);
-                sa.setPubDireccion(s.getPubDescripcion());
-                sa.setPubUbicacion(s.getPubUbicacion());
-                sa.setPubPrecio(s.getPubPrecio());
+                sa.setSalDireccion(s.getSalDireccion());
+                sa.setSalUbicacion(s.getSalUbicacion());
+                sa.setSalPrecio(s.getSalPrecio());
 //                sa.setUsuariopublicador(s.getUsuariopublicador());
 
                 return new ResponseEntity<>(salonService.save(sa), HttpStatus.CREATED);

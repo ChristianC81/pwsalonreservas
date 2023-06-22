@@ -51,5 +51,9 @@ public class Pedido {
     @ManyToOne
     @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
     private Usuario usuario_pedido;
-
+    
+    //Un salon un pedido
+    @OneToOne
+    @JoinColumn(name = "id_salon", referencedColumnName = "id_salon")
+    private Salon salon;
 }

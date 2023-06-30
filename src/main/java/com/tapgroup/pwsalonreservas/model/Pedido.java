@@ -16,6 +16,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import java.util.Date;
 import java.util.List;
 import lombok.Data;
 
@@ -30,28 +31,34 @@ public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_pedido")
-    private int id_pedido;
+    private int pedId;
 
     @Column(name = "cantidad")
-    private String cantidad;
+    private int pedCantidad;
 
     @Column(name = "preciocomplementos")
-    private double preciocomplementos;
+    private double pedPreciocomplementos;
 
     @Column(name = "preciototal")
-    private double preciototal;
+    private double pedPreciototal;
 
     @Column(name = "observacion")
-    private String observacion;
+    private String pedObservacion;
 
-    @Column(name = "comprobantedepago")
-    private String comprobantedepago;
+    @Column(name = "estadodepago")
+    private Boolean pedEstadopago;
+
+    @Column(name = "fechainicio")
+    private Date pedFechaInicio;
+
+    @Column(name = "fechafin")
+    private Date pedFechaFin;
 
     // Muchos pedidos a un Usuario
     @ManyToOne
     @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
     private Usuario usuario_pedido;
-    
+
     //Un salon un pedido
     @OneToOne
     @JoinColumn(name = "id_salon", referencedColumnName = "id_salon")

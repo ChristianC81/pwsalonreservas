@@ -28,10 +28,10 @@ public class Calificacion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_calificacion")
-    private int serId;
+    private int calId;
 
     @Column(name = "valor")
-    private int valor;
+    private int calvalor;
 
     //Funcion que estime las calificaciones
     

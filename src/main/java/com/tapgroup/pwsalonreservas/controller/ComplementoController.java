@@ -52,7 +52,8 @@ public class ComplementoController {
 
                 com.setComNombre(c.getComNombre());
                 com.setComDescripcion(c.getComDescripcion());
-                com.setComEstado(c.getComEstado());
+                com.setComCantidadbase(c.getComCantidadbase());
+                com.setComCantidadrestante(c.getComCantidadrestante());
                 com.setComPrecioUnitario(c.getComPrecioUnitario());
 
                 return new ResponseEntity<>(complementoService.save(com), HttpStatus.CREATED);

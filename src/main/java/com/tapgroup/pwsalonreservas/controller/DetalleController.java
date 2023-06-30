@@ -5,8 +5,8 @@
  */
 package com.tapgroup.pwsalonreservas.controller;
 
-import com.tapgroup.pwsalonreservas.model.Pedido;
-import com.tapgroup.pwsalonreservas.service.PedidoServiceImpl;
+import com.tapgroup.pwsalonreservas.model.Detalle;
+import com.tapgroup.pwsalonreservas.service.DetalleServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,39 +26,35 @@ import org.springframework.web.bind.annotation.RestController;
  * @author jonny
  */
 @RestController
-@RequestMapping("/pedido")
-public class PedidoController {
+@RequestMapping("/detalle")
+public class DetalleController {
 
     @Autowired
-    PedidoServiceImpl pedidoService;
+    DetalleServiceImpl detalleService;
 
-    @Operation(summary = "Se obtiene la lista de Pedidos")
+    @Operation(summary = "Se obtiene la lista de Detalles")
     @GetMapping("/listar")
-    public ResponseEntity<List<Pedido>> listaPedidoes() {
-        return new ResponseEntity<>(pedidoService.findByAll(), HttpStatus.OK);
+    public ResponseEntity<List<Detalle>> listaDetallees() {
+        return new ResponseEntity<>(detalleService.findByAll(), HttpStatus.OK);
     }
 
-    @Operation(summary = "Debe enviar los campos de Pedido")
+    @Operation(summary = "Debe enviar los campos de Detalle")
     @PostMapping("/crear")
-    public ResponseEntity<Pedido> crearPedido(@RequestBody Pedido p) {
-        return new ResponseEntity<>(pedidoService.save(p), HttpStatus.CREATED);
+    public ResponseEntity<Detalle> crearDetalle(@RequestBody Detalle d) {
+        return new ResponseEntity<>(detalleService.save(d), HttpStatus.CREATED);
     }
 
     @PutMapping("/actualizar/{id}")
-    public ResponseEntity<Pedido> actualizarPedido(@PathVariable Integer id, @RequestBody Pedido p) {
-        Pedido pe = pedidoService.findById(id);
-        if (pe != null) {
+    public ResponseEntity<Detalle> actualizarDetalle(@PathVariable Integer id, @RequestBody Detalle d) {
+        Detalle de = detalleService.findById(id);
+        if (de != null) {
             try {
 
-                pe.setPedCantidad(p.getPedCantidad());
-                pe.setPedPreciocomplementos(p.getPedPreciocomplementos());
-                pe.setPedPreciototal(p.getPedPreciototal());
-                pe.setPedObservacion(p.getPedObservacion());
-                pe.setPedEstadopago(p.getPedEstadopago());
-                pe.setPedFechaInicio(p.getPedFechaInicio());
-                pe.setPedFechaFin(p.getPedFechaFin());
+                de.setDeCantidadpedida(d.getDeCantidadpedida());
+                de.setDeGarantiadanos(d.getDeGarantiadanos());
+                de.setDePreciounitario(d.getDePreciounitario());
 
-                return new ResponseEntity<>(pedidoService.save(pe), HttpStatus.CREATED);
+                return new ResponseEntity<>(detalleService.save(de), HttpStatus.CREATED);
             } catch (Exception e) {
                 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
@@ -69,8 +65,8 @@ public class PedidoController {
     }
 
     @DeleteMapping("/eliminar/{id}")
-    public ResponseEntity<Pedido> eliminarPedido(@PathVariable Integer id) {
-        pedidoService.delete(id);
+    public ResponseEntity<Detalle> eliminarDetalle(@PathVariable Integer id) {
+        detalleService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

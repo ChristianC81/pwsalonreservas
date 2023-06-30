@@ -35,8 +35,11 @@ public class Complemento {
     @Column(name = "descripcion")
     private String comDescripcion;
 
-    @Column(name = "estado")
-    private String comEstado;
+    @Column(name = "cantidadbase")
+    private int comCantidadbase;
+
+    @Column(name = "cantidadrestante")
+    private int comCantidadrestante;
 
     @Column(name = "precioUnitario")
     private double comPrecioUnitario;

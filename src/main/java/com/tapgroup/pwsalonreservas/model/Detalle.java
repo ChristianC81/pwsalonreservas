@@ -5,6 +5,7 @@
  */
 package com.tapgroup.pwsalonreservas.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,7 +13,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotBlank;
+import java.util.List;
 import lombok.Data;
 
 /**
@@ -22,7 +25,7 @@ import lombok.Data;
 @Data
 @Entity
 public class Detalle {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_detalle")
@@ -38,10 +41,13 @@ public class Detalle {
     @Column(name = "preciounitario")
     private double dePreciounitario;
 
-    // muchos complementos tienen un salon
+    //Muchos detalles a un complemento
     @ManyToOne
-    @JoinColumn(name = "id_salon", referencedColumnName = "id_salon")
-    private Salon salon;
-    
-    
+    @JoinColumn(name = "id_complemento", referencedColumnName = "id_complemento")
+    private Complemento complemento;
+
+    //Un pedido a muchos detalles
+    //@JsonIgnore
+    //@OneToMany(mappedBy = "pedido")
+    //private List<Pedido> listapedidos;
 }

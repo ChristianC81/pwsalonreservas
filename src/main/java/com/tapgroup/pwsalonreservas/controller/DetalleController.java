@@ -53,6 +53,8 @@ public class DetalleController {
                 de.setDeCantidadpedida(d.getDeCantidadpedida());
                 de.setDeGarantiadanos(d.getDeGarantiadanos());
                 de.setDePreciounitario(d.getDePreciounitario());
+                //
+                de.setComplemento(d.getComplemento());
 
                 return new ResponseEntity<>(detalleService.save(de), HttpStatus.CREATED);
             } catch (Exception e) {

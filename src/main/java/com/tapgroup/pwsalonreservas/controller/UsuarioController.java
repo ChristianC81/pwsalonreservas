@@ -53,7 +53,8 @@ public class UsuarioController {
             try {
                 usu.setUsuNombre(u.getUsuNombre());
                 usu.setUsuContrasenia(u.getUsuContrasenia());
-                usu.setRol(u.getRol());   
+                usu.setRol(u.getRol());  
+                usu.setPersona(u.getPersona());
            
                 return new ResponseEntity<>(usuarioService.save(usu), HttpStatus.CREATED);
             } catch (Exception e) {

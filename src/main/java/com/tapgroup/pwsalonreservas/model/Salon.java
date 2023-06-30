@@ -78,4 +78,6 @@ public class Salon {
     @JsonIgnore
     @OneToMany(mappedBy = "salon")
     private List<Complemento> listaComplementos;
+    
+
 }

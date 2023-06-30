@@ -12,7 +12,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotBlank;
+import java.util.List;
 import lombok.Data;
 
 /**
@@ -48,5 +50,10 @@ public class Complemento {
     @ManyToOne
     @JoinColumn(name = "id_salon", referencedColumnName = "id_salon")
     private Salon salon;
+
+    //Un complemento a muchos detalles
+    @JsonIgnore
+    @OneToMany(mappedBy = "complemento")
+    private List<Detalle> listaDetalles;
 
 }

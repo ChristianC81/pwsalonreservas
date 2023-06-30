@@ -57,6 +57,9 @@ public class PedidoController {
                 pe.setPedEstadopago(p.getPedEstadopago());
                 pe.setPedFechaInicio(p.getPedFechaInicio());
                 pe.setPedFechaFin(p.getPedFechaFin());
+                //
+                pe.setSalon(p.getSalon());
+                pe.setUsuario_pedido(p.getUsuario_pedido());
 
                 return new ResponseEntity<>(pedidoService.save(pe), HttpStatus.CREATED);
             } catch (Exception e) {

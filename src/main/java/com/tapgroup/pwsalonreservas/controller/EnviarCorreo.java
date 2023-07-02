@@ -26,6 +26,14 @@ public class EnviarCorreo {
         email.setFrom("cuyrent@gmail.com");
         email.setSubject("Mensaje de prueba1");
         email.setText("El cuerpo del mesaje");
+        email.setTo("ejemplo@gmail.com");
+        email.setFrom("cuyrent@gmail.com");
+        email.setSubject("Mensaje de prueba1");
+        email.setText("El cuerpo del mesaje");
+        email.setTo("ejemplo@gmail.com");
+        email.setFrom("cuyrent@gmail.com");
+        email.setSubject("Mensaje de prueba1");
+        email.setText("El cuerpo del mesaje");
         mail.send(email);
         
         return new ResponseEntity<>(true,HttpStatus.OK);

@@ -22,7 +22,7 @@ public class EnviarCorreo {
     @PostMapping("enviar")
     public ResponseEntity<?> enviarCorreo(){
         SimpleMailMessage email = new SimpleMailMessage();
-        email.setTo("chumbicito@gmail.com");
+        email.setTo("ejemplo@gmail.com");
         email.setFrom("cuyrent@gmail.com");
         email.setSubject("Mensaje de prueba1");
         email.setText("El cuerpo del mesaje");

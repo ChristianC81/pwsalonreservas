@@ -13,9 +13,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
 import java.util.List;
 import lombok.Data;
 
@@ -35,9 +32,11 @@ public class Usuario {
     @Column(name = "nombre_usuario")
     private String usuNombre;
 
-    @NotBlank(message = "La contraseña no puede estar en blanco")
     @Column(name = "contrasenia")
     private String usuContrasenia;
+
+    @Column(name = "estado")
+    private boolean usuEstado;
 
     //Muchos usuarios una persona
     @ManyToOne
@@ -58,7 +57,7 @@ public class Usuario {
     @JsonIgnore
     @OneToMany(mappedBy = "usuariopublicador")
     private List<Salon> listaSalones;
-    
+
     //Un usuario muchos pedidos
     @JsonIgnore
     @OneToMany(mappedBy = "usuario_pedido")

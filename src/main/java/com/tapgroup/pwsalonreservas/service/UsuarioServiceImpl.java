@@ -25,6 +25,12 @@ public class UsuarioServiceImpl extends GenericServiceImpl<Usuario, Integer> imp
         return usuarioRepository.validarUsuario(usuNombre);
     }
 
+    public Usuario findByUsuario(String usuNombre) {
+        return usuarioRepository.findByUsuario(usuNombre).orElse(null);
+    }
+
+    
+
   
     
     @Override

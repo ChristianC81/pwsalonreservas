@@ -12,6 +12,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author jonny
  */
-@CrossOrigin(origins="http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/usuario")
 public class UsuarioController {
@@ -43,6 +44,10 @@ public class UsuarioController {
     @Operation(summary = "Debe enviar los campos del Usuario")
     @PostMapping("/crear")
     public ResponseEntity<Usuario> crearUsuario(@RequestBody Usuario u) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String hashedPassword = passwordEncoder.encode(u.getUsuContrasenia());
+        u.setUsuContrasenia(hashedPassword);
+
         return new ResponseEntity<>(usuarioService.save(u), HttpStatus.CREATED);
     }
 
@@ -53,9 +58,9 @@ public class UsuarioController {
             try {
                 usu.setUsuNombre(u.getUsuNombre());
                 usu.setUsuContrasenia(u.getUsuContrasenia());
-                usu.setRol(u.getRol());  
+                usu.setRol(u.getRol());
                 usu.setPersona(u.getPersona());
-           
+
                 return new ResponseEntity<>(usuarioService.save(usu), HttpStatus.CREATED);
             } catch (Exception e) {
                 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -71,11 +76,30 @@ public class UsuarioController {
         usuarioService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-    
+
     //metodos personalizados 
     @GetMapping("/verificar/{user}")
-    public boolean verificar(@PathVariable String user){
+    public boolean verificar(@PathVariable String user) {
         return usuarioService.validarUsuario(user);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<Usuario> login(@RequestBody Usuario u) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        Usuario usu = usuarioService.findByUsuario(u.getUsuNombre());
+
+        if (usu!=null) {
+            if (passwordEncoder.matches(u.getUsuContrasenia(), u.getUsuContrasenia())) {
+
+                return new ResponseEntity<>(usu, HttpStatus.OK);
+            } else {
+                usu = null;
+                return new ResponseEntity<>(usu, HttpStatus.OK);
+            }
+        }else{
+            return new ResponseEntity<>(usu, HttpStatus.ACCEPTED);
+        }
+
     }
 
 }

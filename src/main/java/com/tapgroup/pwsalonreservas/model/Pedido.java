@@ -63,10 +63,10 @@ public class Pedido {
     @OneToOne
     @JoinColumn(name = "id_salon", referencedColumnName = "id_salon")
     private Salon salon;
-    
-    //Muchos detalles a un pedido
-    //@ManyToOne
-    //@JoinColumn(name = "id_detalle", referencedColumnName = "id_detalle")
-    //private Detalle detalle;
-    
+
+    //Un detalle a un pedido
+    @OneToOne
+    @JoinColumn(name = "id_detalle", referencedColumnName = "id_detalle")
+    private Detalle detalle;
+
 }

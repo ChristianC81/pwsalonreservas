@@ -32,33 +32,40 @@ public class Salon {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_salon")
-    private int salId;
+    private int salonId;
 
     @Size(min = 3, max = 10, message = "El nombre del salon debe tener entre 3 y 10 caracteres")
-    @NotBlank(message = "La salon no puede estar en blanco")
+    @NotBlank(message = "El salon no puede estar en blanco")
     @Column(name = "nombre")
-    private String salNombre;
+    private String salonNombre;
 
     @Column(name = "descripcion")
-    private String salDescripcion;
+    private String salonDescripcion;
 
-    @Column(name = "ubicacion")
-    private String salUbicacion;
+    @Column(name = "longitud")
+    private double salonLongitud;
+
+    @Column(name = "latitud")
+    private double salonLatitud;
 
     @Column(name = "direccion")
-    private String salDireccion;
+    private String salonDireccion;
 
     @Column(name = "precioSalon")
-    private double salPrecio;
+    private double salonPrecio;
 
     @Column(name = "disponibilidad")
-    private boolean salDisponibilidad;
+    private boolean salonDisponibilidad;
 
     @Column(name = "capacidad")
-    private int salCapacidad;
+    private int salonCapacidad;
 
-//    @Column(name = "categoria")
-//    private String pubCategoria;
+    @Column(name = "categoria")
+    private String salonCategoria;
+
+    @Column(name = "foto")
+    private String salonFoto;
+
     //Muchos salones un usuario (Publicador)
     @ManyToOne
     @JoinColumn(name = "id_usuariopublicador", referencedColumnName = "id_usuario")
@@ -78,6 +85,5 @@ public class Salon {
     @JsonIgnore
     @OneToMany(mappedBy = "salon")
     private List<Complemento> listaComplementos;
-    
 
 }

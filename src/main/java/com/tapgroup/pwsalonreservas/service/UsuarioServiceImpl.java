@@ -8,6 +8,7 @@ package com.tapgroup.pwsalonreservas.service;
 import com.tapgroup.pwsalonreservas.model.Usuario;
 import com.tapgroup.pwsalonreservas.repository.UsuarioRepository;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
@@ -32,6 +33,10 @@ public class UsuarioServiceImpl extends GenericServiceImpl<Usuario, Integer> imp
     
     public List usuariosInactivos(){
         return usuarioRepository.getUsuariosInactivos();
+    }
+
+    public Usuario findByUsuario(String peCorreo) {
+        return usuarioRepository.findByUsuario(peCorreo).orElse(null);
     }
     
     @Override

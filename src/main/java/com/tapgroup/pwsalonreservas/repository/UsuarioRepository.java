@@ -6,6 +6,7 @@ package com.tapgroup.pwsalonreservas.repository;
 
 import com.tapgroup.pwsalonreservas.model.Usuario;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -26,7 +27,10 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 
     @Query("SELECT u FROM Usuario u WHERE u.usuEstado = 'Activo'")
     List<Usuario> getUsuariosActivos();
-    
+
     @Query("SELECT u FROM Usuario u WHERE u.usuEstado = 'Inactivo'")
     List<Usuario> getUsuariosInactivos();
+
+    @Query("SELECT u FROM Usuario u JOIN u.persona p WHERE p.persEmail = :correo")
+    Optional<Usuario> findByUsuario(@Param("correo") String persEmail);
 }

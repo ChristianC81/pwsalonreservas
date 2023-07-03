@@ -115,4 +115,24 @@ public class UsuarioController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+    
+    @PostMapping("/login")
+    public ResponseEntity<Usuario> login(@RequestBody Usuario u) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        Usuario usu = usuarioService.findByUsuario(u.getUsuNombre());
+
+        if (usu != null) {
+            if (passwordEncoder.matches(u.getUsuContrasenia(), usu.getUsuContrasenia())) {
+
+                return new ResponseEntity<>(usu, HttpStatus.OK);
+            } else {
+                usu = null;
+                return new ResponseEntity<>(usu, HttpStatus.NON_AUTHORITATIVE_INFORMATION);
+            }
+        } else {
+            return new ResponseEntity<>(usu, HttpStatus.NOT_FOUND);
+        }
+
+    }
+    
 }

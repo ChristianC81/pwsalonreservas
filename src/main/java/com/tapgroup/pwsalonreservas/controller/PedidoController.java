@@ -60,6 +60,7 @@ public class PedidoController {
                 //
                 pe.setSalon(p.getSalon());
                 pe.setUsuario_pedido(p.getUsuario_pedido());
+                pe.setDetalle(p.getDetalle());
 
                 return new ResponseEntity<>(pedidoService.save(pe), HttpStatus.CREATED);
             } catch (Exception e) {

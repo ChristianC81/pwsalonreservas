@@ -33,7 +33,6 @@ public class Usuario {
     @Column(name = "nombre_usuario")
     private String usuNombre;
 
-    @NotBlank(message = "La contraseña no puede estar en blanco")
     @Column(name = "contrasenia")
     private String usuContrasenia;
 

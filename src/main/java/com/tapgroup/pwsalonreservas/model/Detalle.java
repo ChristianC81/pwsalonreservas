@@ -41,13 +41,8 @@ public class Detalle {
     @Column(name = "preciounitario")
     private double dePreciounitario;
 
-    //Muchos detalles a un complemento
+    //Muchos complementos a un detalle
     @ManyToOne
     @JoinColumn(name = "id_complemento", referencedColumnName = "id_complemento")
     private Complemento complemento;
-
-    //Un pedido a muchos detalles
-    //@JsonIgnore
-    //@OneToMany(mappedBy = "pedido")
-    //private List<Pedido> listapedidos;
 }

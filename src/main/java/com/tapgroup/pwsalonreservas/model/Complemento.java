@@ -50,10 +50,12 @@ public class Complemento {
     @ManyToOne
     @JoinColumn(name = "id_salon", referencedColumnName = "id_salon")
     private Salon salon;
-
-    //Un complemento a muchos detalles
+    
+    //Un detalle a muchos complementos
     @JsonIgnore
     @OneToMany(mappedBy = "complemento")
-    private List<Detalle> listaDetalles;
+    private List<Detalle> listadetalles;
+
+    
 
 }

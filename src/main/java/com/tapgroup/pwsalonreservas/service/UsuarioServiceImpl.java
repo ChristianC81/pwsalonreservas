@@ -7,6 +7,7 @@ package com.tapgroup.pwsalonreservas.service;
 
 import com.tapgroup.pwsalonreservas.model.Usuario;
 import com.tapgroup.pwsalonreservas.repository.UsuarioRepository;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
@@ -25,7 +26,13 @@ public class UsuarioServiceImpl extends GenericServiceImpl<Usuario, Integer> imp
         return usuarioRepository.validarUsuario(usuNombre);
     }
 
-  
+    public List usuariosActivos(){
+        return usuarioRepository.getUsuariosActivos();
+    }
+    
+    public List usuariosInactivos(){
+        return usuarioRepository.getUsuariosInactivos();
+    }
     
     @Override
     public CrudRepository<Usuario, Integer> getDao() {

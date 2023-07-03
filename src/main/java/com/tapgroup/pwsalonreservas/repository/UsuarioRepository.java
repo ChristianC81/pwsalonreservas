@@ -5,6 +5,7 @@
 package com.tapgroup.pwsalonreservas.repository;
 
 import com.tapgroup.pwsalonreservas.model.Usuario;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -15,13 +16,17 @@ import org.springframework.data.repository.query.Param;
  */
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 
-
     //!!!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!!!!!!!!!!!!!!!!
     //al mandar un parametro siempre va los :varible 
     //los : y la variable si no no vale
-    
     //buscar el si existe un usuario 
-    @Query ("SELECT COUNT(u)>0 FROM Usuario u WHERE u.usuNombre = :usuario")
-    boolean validarUsuario(@Param("usuario")String usuNombre);
+    @Query("SELECT COUNT(u)>0 FROM Usuario u WHERE u.usuNombre = :usuario")
+    boolean validarUsuario(@Param("usuario") String usuNombre);
+
+    @Query("SELECT u FROM Usuario u WHERE u.usuEstado = 'Activo'")
+    List<Usuario> getUsuariosActivos();
+    
+    @Query("SELECT u FROM Usuario u WHERE u.usuEstado = 'Inactivo'")
+    List<Usuario> getUsuariosInactivos();
 }

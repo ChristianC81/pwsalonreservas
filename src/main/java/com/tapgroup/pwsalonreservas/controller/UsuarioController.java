@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author jonny
  */
-@CrossOrigin(origins="http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/usuario")
 public class UsuarioController {
@@ -53,9 +53,10 @@ public class UsuarioController {
             try {
                 usu.setUsuNombre(u.getUsuNombre());
                 usu.setUsuContrasenia(u.getUsuContrasenia());
-                usu.setRol(u.getRol());  
+                usu.setRol(u.getRol());
+                usu.setUsuEstado(u.getUsuEstado());
                 usu.setPersona(u.getPersona());
-           
+
                 return new ResponseEntity<>(usuarioService.save(usu), HttpStatus.CREATED);
             } catch (Exception e) {
                 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -71,11 +72,42 @@ public class UsuarioController {
         usuarioService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-    
+
     //metodos personalizados 
     @GetMapping("/verificar/{user}")
-    public boolean verificar(@PathVariable String user){
+    public boolean verificar(@PathVariable String user) {
         return usuarioService.validarUsuario(user);
     }
 
+    //Metodo listar usuarios activos
+    @GetMapping("/activos")
+    public ResponseEntity<List<Usuario>> listaUsuariosActivos() {
+        List<Usuario> usuariosActivos = usuarioService.usuariosActivos();
+        return new ResponseEntity<>(usuariosActivos, HttpStatus.OK);
+    }
+    
+    //Metodo listar usuarios inactivos
+    @GetMapping("/inactivos")
+    public ResponseEntity<List<Usuario>> listaUsuariosInactivos() {
+        List<Usuario> usuariosInactivos = usuarioService.usuariosInactivos();
+        return new ResponseEntity<>(usuariosInactivos, HttpStatus.OK);
+    }
+    
+    //Metodo para actualizar estado
+    
+     @PutMapping("/actualizarest/{id}")
+    public ResponseEntity<Usuario> actualizarEstadoUsuario(@PathVariable Integer id,@RequestBody Usuario u) {
+        Usuario usu = usuarioService.findById(id);
+        if (usu != null) {
+            try {
+                usu.setUsuEstado(u.getUsuEstado());
+                return new ResponseEntity<>(usuarioService.save(usu), HttpStatus.CREATED);
+            } catch (Exception e) {
+                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 }

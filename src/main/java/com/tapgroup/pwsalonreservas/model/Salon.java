@@ -76,11 +76,6 @@ public class Salon {
     @OneToMany(mappedBy = "salon")
     private List<Calificacion> listaCalificaciones;
 
-    //Un salon un pedido
-    @OneToOne
-    @JoinColumn(name = "id_pedido", referencedColumnName = "id_pedido")
-    private Pedido pedido;
-
     //Un salon tiene uno o muchos complementos
     @JsonIgnore
     @OneToMany(mappedBy = "salon")

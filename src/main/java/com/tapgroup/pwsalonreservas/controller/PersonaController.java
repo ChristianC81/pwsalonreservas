@@ -26,13 +26,13 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author jonny
  */
-@CrossOrigin(origins="http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/persona")
 public class PersonaController {
-    
-     @Autowired
-     PersonaServiceImpl personaService;
+
+    @Autowired
+    PersonaServiceImpl personaService;
 
     @Operation(summary = "Se obtiene la lista de Personas")
     @GetMapping("/listar")
@@ -51,7 +51,7 @@ public class PersonaController {
         Persona per = personaService.findById(id);
         if (per != null) {
             try {
-                
+
                 per.setPersDniPasaporte(p.getPersDniPasaporte());
                 per.setPersNombre(p.getPersNombre());
                 per.setPersApellido(p.getPersApellido());
@@ -59,8 +59,7 @@ public class PersonaController {
                 per.setPersTelefono(p.getPersEmail());
                 per.setPerscelular(p.getPerscelular());
                 per.setPersFechaNac(p.getPersFechaNac());
-                
-              
+
                 return new ResponseEntity<>(personaService.save(per), HttpStatus.CREATED);
             } catch (Exception e) {
                 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -76,14 +75,16 @@ public class PersonaController {
         personaService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-    
-    
+
     //metodos personalizados 
     @GetMapping("/verificar/{dni}")
-    public boolean verificar(@PathVariable String dni){
+    public boolean verificar(@PathVariable String dni) {
         System.out.println(dni);
         return personaService.validarPersona(dni);
     }
-    
-    
+
+    @GetMapping("/vericarEma/{email}")
+    public boolean verificarEma(@PathVariable String email) {
+        return personaService.validarEmail(email);
+    }
 }

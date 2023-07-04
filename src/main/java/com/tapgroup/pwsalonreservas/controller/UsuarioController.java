@@ -123,13 +123,15 @@ public class UsuarioController {
 
         if (usu != null) {
             if (passwordEncoder.matches(u.getUsuContrasenia(), usu.getUsuContrasenia())) {
-
+                //todo okey retorna el usuario
                 return new ResponseEntity<>(usu, HttpStatus.OK);
             } else {
-                usu = null;
+                //contraseña mal 
+                usu = new Usuario();
                 return new ResponseEntity<>(usu, HttpStatus.NON_AUTHORITATIVE_INFORMATION);
             }
         } else {
+            //usuario mal
             return new ResponseEntity<>(usu, HttpStatus.NOT_FOUND);
         }
 

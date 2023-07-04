@@ -16,8 +16,9 @@ import org.springframework.data.repository.query.Param;
  */
 public interface PersonaRepository extends JpaRepository<Persona, Integer> {
 
-    
-    
     @Query("SELECT COUNT(p)>0 FROM Persona p WHERE p.persDniPasaporte = :dni")
     boolean validarPersona(@Param("dni") String persDniPasaporte);
+    
+    @Query("SELECT COUNT(p)> 0 FROM Persona p WHERE p.persEmail= :email")
+    boolean validarEmail(@Param("email") String persEmail);
 }

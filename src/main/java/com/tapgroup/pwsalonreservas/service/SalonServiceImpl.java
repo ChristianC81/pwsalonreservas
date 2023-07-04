@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 import com.tapgroup.pwsalonreservas.repository.SalonRepository;
+import java.util.List;
 
 /**
  *
@@ -20,6 +21,15 @@ public class SalonServiceImpl extends GenericServiceImpl<Salon, Integer> impleme
 
     @Autowired
     SalonRepository salonRepository;
+    
+    
+    public List salonesActivos(){
+        return salonRepository.getSalonesActivos();
+    }
+    
+    public List salonesInactivos(){
+        return salonRepository.getSalonesInactivos();
+    }
 
     @Override
     public CrudRepository<Salon, Integer> getDao() {

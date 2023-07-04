@@ -77,5 +77,37 @@ public class SalonController {
         salonService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+    
+    
+    //Metodo listar salones activos
+    @GetMapping("/activos")
+    public ResponseEntity<List<Salon>> listaSalonesActivos() {
+        List<Salon> salonesActivos = salonService.salonesActivos();
+        return new ResponseEntity<>(salonesActivos, HttpStatus.OK);
+    }
+
+    //Metodo listar salones inactivos
+    @GetMapping("/inactivos")
+    public ResponseEntity<List<Salon>> listaSalonesInactivos() {
+        List<Salon> salonesInactivos = salonService.salonesInactivos();
+        return new ResponseEntity<>(salonesInactivos, HttpStatus.OK);
+    }
+
+    //Metodo para actualizar estado
+    @PutMapping("/actualizarest/{id}")
+    public ResponseEntity<Salon> actualizarEstadoUsuario(@PathVariable Integer id, @RequestBody Salon s) {
+        Salon sal = salonService.findById(id);
+        if (sal != null) {
+            try {
+                sal.setSalEstado(s.getSalEstado());
+                return new ResponseEntity<>(salonService.save(sal), HttpStatus.CREATED);
+            } catch (Exception e) {
+                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 
 }

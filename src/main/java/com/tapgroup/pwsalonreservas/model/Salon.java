@@ -59,6 +59,9 @@ public class Salon {
 
     @Column(name = "capacidad")
     private int salonCapacidad;
+    
+    @Column(name = "estado")
+    private String salEstado;
 
     @Column(name = "categoria")
     private String salonCategoria;

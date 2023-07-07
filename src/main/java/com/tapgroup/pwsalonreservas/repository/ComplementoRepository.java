@@ -14,6 +14,6 @@ import org.springframework.data.jpa.repository.Query;
  * @author chris
  */
 public interface ComplementoRepository extends JpaRepository<Complemento, Integer>{
-        @Query(value = "Select * from complemento u where u.nombre = :nombre", nativeQuery = true)
+    @Query(value = "Select * from complemento u where u.nombre = :nombre", nativeQuery = true)
     public Complemento buscarComplemento(String nombre);
 }

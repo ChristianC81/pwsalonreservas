@@ -56,6 +56,10 @@ public class Complemento {
     @OneToMany(mappedBy = "complemento")
     private List<Detalle> listadetalles;
 
-    
+    //Muchos complementos a un grupo complemento
+    @ManyToOne
+    @JoinColumn(name = "id_grupocomplemento", referencedColumnName = "id_grupocomplemento")
+    private GrupoComplemento grupocomplemento;
+
 
 }

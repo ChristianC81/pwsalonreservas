@@ -59,7 +59,7 @@ public class Salon {
 
     @Column(name = "capacidad")
     private int salonCapacidad;
-    
+
     @Column(name = "estado")
     private String salEstado;
 
@@ -83,5 +83,11 @@ public class Salon {
     @JsonIgnore
     @OneToMany(mappedBy = "salon")
     private List<Complemento> listaComplementos;
+    
+    
+    //Un grupo complemento a un salon
+    @OneToOne
+    @JoinColumn(name = "id_grupocomplemento", referencedColumnName = "id_grupocomplemento")
+    private GrupoComplemento grupocomplemento;
 
 }

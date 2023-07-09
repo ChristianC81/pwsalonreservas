@@ -65,4 +65,6 @@ public class Usuario {
     @OneToMany(mappedBy = "usuario_pedido")
     private List<Pedido> listaPedidos;
 
+    //Atributos persona
+    
 }

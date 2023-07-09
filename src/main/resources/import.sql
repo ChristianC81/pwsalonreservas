@@ -10,3 +10,7 @@ INSERT INTO `persona` (`id_persona`, `apellido`, `dni_pasaporte`, `email`, `fech
 
 INSERT INTO `usuario` (`id_usuario`, `contrasenia`,`estado`, `nombre_usuario`, `id_persona`, `id_rol`) VALUES ('1', 'Lolito@12','Activo','christianC81', '1', '1')
 INSERT INTO `usuario` (`id_usuario`, `contrasenia`,`estado`, `nombre_usuario`, `id_persona`, `id_rol`) VALUES ('2', 'Lolito@12','Inactivo','jhudytg', '2', '1')
+
+--Salones
+
+INSERT INTO `salon` (`capacidad`, `disponibilidad`, `id_salon`, `id_usuariopublicador`, `latitud`, `longitud`, `precio_salon`, `nombre`, `categoria`, `descripcion`, `direccion`, `estado`, `foto`) VALUES ('100',1, '1', '1', '10.2', '123.2', '100', 'SalonGeltr', 'Cumpleaños', 'Grande', 'Av. pumapungo', 'Activo', 'assdsad');

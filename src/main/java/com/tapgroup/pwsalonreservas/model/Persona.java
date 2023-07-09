@@ -13,7 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import java.sql.Date;
 import java.util.List;
-import lombok.Data;
+import lombok.*;
 
 /**
  *
@@ -21,6 +21,8 @@ import lombok.Data;
  */
 @Data
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 public class Persona {
 
     @Id

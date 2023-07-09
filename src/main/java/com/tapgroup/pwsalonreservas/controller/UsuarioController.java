@@ -47,7 +47,9 @@ public class UsuarioController {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String hashedPassword = passwordEncoder.encode(u.getUsuContrasenia());
         u.setUsuContrasenia(hashedPassword);
-
+        u.setUsuEstado("Activo");
+        u.getRol().setRolId(2);
+        
         return new ResponseEntity<>(usuarioService.save(u), HttpStatus.CREATED);
     }
 

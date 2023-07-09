@@ -1,5 +1,6 @@
 --Roles
 INSERT INTO `rol` (`id_rol`, `descripcion`, `nombre`) VALUES ('1', 'Todas las funciones del Sistema', 'Administrador');
+INSERT INTO `rol` (`id_rol`, `descripcion`, `nombre`) VALUES ('2', 'Publicaciones', 'Usuario');
 
 --Personas
 

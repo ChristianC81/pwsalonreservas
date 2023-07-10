@@ -55,15 +55,14 @@ public class SalonController {
                 sa.setSalonNombre(s.getSalonNombre());
                 sa.setSalonDescripcion(s.getSalonDescripcion());
                 sa.setSalonCapacidad(s.getSalonCapacidad());
-                //sa.setDisponibilidad(s.getd);
                 sa.setSalonDireccion(s.getSalonDireccion());
                 sa.setSalonLongitud(s.getSalonLongitud());
                 sa.setSalonLatitud(s.getSalonLatitud());
                 sa.setSalonPrecio(s.getSalonPrecio());
                 sa.setSalonCategoria(s.getSalonCategoria());
                 sa.setSalonFoto(s.getSalonFoto());
+                sa.setSalonEstado(s.getSalonEstado());
 //                sa.setUsuariopublicador(s.getUsuariopublicador());
-
                 return new ResponseEntity<>(salonService.save(sa), HttpStatus.CREATED);
             } catch (Exception e) {
                 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -79,8 +78,7 @@ public class SalonController {
         salonService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-    
-    
+
     //Metodo listar salones activos
     @GetMapping("/activos")
     public ResponseEntity<List<Salon>> listaSalonesActivos() {
@@ -97,11 +95,11 @@ public class SalonController {
 
     //Metodo para actualizar estado
     @PutMapping("/actualizarest/{id}")
-    public ResponseEntity<Salon> actualizarEstadoUsuario(@PathVariable Integer id, @RequestBody Salon s) {
+    public ResponseEntity<Salon> actualizarEstadoSalon(@PathVariable Integer id, @RequestBody Salon s) {
         Salon sal = salonService.findById(id);
         if (sal != null) {
             try {
-                sal.setSalEstado(s.getSalEstado());
+                sal.setSalonEstado(s.getSalonEstado());
                 return new ResponseEntity<>(salonService.save(sal), HttpStatus.CREATED);
             } catch (Exception e) {
                 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -111,5 +109,4 @@ public class SalonController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
 }

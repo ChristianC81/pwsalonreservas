@@ -25,10 +25,10 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
     @Query("SELECT COUNT(u)>0 FROM Usuario u WHERE u.usuNombre = :usuario")
     boolean validarUsuario(@Param("usuario") String usuNombre);
 
-     @Query("SELECT u FROM Usuario u JOIN u.persona p WHERE u.usuEstado = 'Activo'")
+    @Query("SELECT u FROM Usuario u WHERE u.usuEstado = 'Activo'")
     List<Usuario> getUsuariosActivos();
 
-    @Query("SELECT u FROM Usuario u JOIN u.persona p WHERE u.usuEstado = 'Inactivo'")
+    @Query("SELECT u FROM Usuario u WHERE u.usuEstado = 'Inactivo'")
     List<Usuario> getUsuariosInactivos();
 
     @Query("SELECT u FROM Usuario u JOIN u.persona p WHERE p.persEmail = :correo")

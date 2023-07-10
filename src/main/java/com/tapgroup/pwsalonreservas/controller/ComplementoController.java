@@ -57,7 +57,6 @@ public class ComplementoController {
                 com.setComCantidadbase(c.getComCantidadbase());
                 com.setComCantidadrestante(c.getComCantidadrestante());
                 com.setComPrecioUnitario(c.getComPrecioUnitario());
-                
 
                 return new ResponseEntity<>(complementoService.save(com), HttpStatus.CREATED);
             } catch (Exception e) {
@@ -73,6 +72,14 @@ public class ComplementoController {
     public ResponseEntity<Complemento> eliminarComplemento(@PathVariable Integer id) {
         complementoService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    //Metodos personalizados
+    //Obtener los nombres de los complementos de un grupo_complemento
+    @GetMapping("/nombrecomplementos")
+    public ResponseEntity<List<String>> nombrecomplementos() {
+        List<String> nombresComplementos = complementoService.nombrecomplementos();
+        return new ResponseEntity<>(nombresComplementos, HttpStatus.OK);
     }
 
 }

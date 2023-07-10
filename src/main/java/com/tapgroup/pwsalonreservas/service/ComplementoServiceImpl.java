@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 import com.tapgroup.pwsalonreservas.repository.ComplementoRepository;
+import java.util.List;
 
 /**
  *
@@ -21,11 +22,13 @@ public class ComplementoServiceImpl extends GenericServiceImpl<Complemento, Inte
     @Autowired
     ComplementoRepository complementoRepository;
 
+    public List nombrecomplementos() {
+        return complementoRepository.obtenerNombresComplemento();
+    }
+
     @Override
     public CrudRepository<Complemento, Integer> getDao() {
         return complementoRepository;
     }
 
-
 }
-

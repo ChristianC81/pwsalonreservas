@@ -18,8 +18,8 @@ public interface GrupoComplementoRepository extends JpaRepository<GrupoComplemen
     @Query(value = "Select * from grupocomplemento u where u.comgrupo_id = :comgrupo_id", nativeQuery = true)
     public GrupoComplemento buscarGrupoComplemento(int comgrupo_id);
 
+    //Consulta para obtener el ultimo id creado
     @Query(value = "SELECT g.id_grupocomplemento FROM grupo_complemento g ORDER BY g.id_grupocomplemento DESC LIMIT 1", nativeQuery = true)
     Integer obtenerUltimoIdGrupoComplemento();
-
 
 }

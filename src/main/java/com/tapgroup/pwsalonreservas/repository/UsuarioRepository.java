@@ -33,4 +33,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 
     @Query("SELECT u FROM Usuario u JOIN u.persona p WHERE p.persEmail = :correo")
     Optional<Usuario> findByUsuario(@Param("correo") String persEmail);
+
+    @Query("SELECT u FROM Usuario u")
+    List<Usuario> getUsuarios();
 }

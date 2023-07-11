@@ -34,6 +34,10 @@ public class UsuarioServiceImpl extends GenericServiceImpl<Usuario, Integer> imp
     public List usuariosInactivos(){
         return usuarioRepository.getUsuariosInactivos();
     }
+    
+    public List usuarios(){
+        return usuarioRepository.getUsuarios();
+    }
 
     public Usuario findByUsuario(String peCorreo) {
         return usuarioRepository.findByUsuario(peCorreo).orElse(null);

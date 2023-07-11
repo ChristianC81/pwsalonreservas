@@ -87,12 +87,18 @@ public class UsuarioController {
     }
 
     //Metodo listar usuarios activos
+    @GetMapping("/todos")
+    public ResponseEntity<List<Usuario>> listaUsuarios() {
+        List<Usuario> usuariosActivos = usuarioService.usuarios();
+        return new ResponseEntity<>(usuariosActivos, HttpStatus.OK);
+    }
+    
+    //Metodo listar usuarios activos
     @GetMapping("/activos")
     public ResponseEntity<List<Usuario>> listaUsuariosActivos() {
         List<Usuario> usuariosActivos = usuarioService.usuariosActivos();
         return new ResponseEntity<>(usuariosActivos, HttpStatus.OK);
     }
-    
     //Metodo listar usuarios inactivos
     @GetMapping("/inactivos")
     public ResponseEntity<List<Usuario>> listaUsuariosInactivos() {
@@ -138,5 +144,6 @@ public class UsuarioController {
         }
 
     }
+    
     
 }
